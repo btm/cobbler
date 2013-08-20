@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cobbler
-# Recipe:: default
+# Recipe:: _common_install
 #
 # Copyright 2013, Guilhem Lettron <guilhem@lettron.fr>
 #
@@ -17,4 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe "cobbler::cobblerd"
+node['cobbler']['cobblerd']['packages_required'].each do |pack|
+  package pack
+end
+
+include_recipe "tftp"
+include_recipe "rsync"
+include_recipe "python"

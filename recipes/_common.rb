@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cobbler
-# Recipe:: default
+# Recipe:: _common
 #
 # Copyright 2013, Guilhem Lettron <guilhem@lettron.fr>
 #
@@ -17,4 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe "cobbler::cobblerd"
+group node['cobbler']['group'] do
+  system true
+end
+
+user node['cobbler']['user'] do
+  supports :manage_home => true
+  gid node['cobbler']['group']
+  home node['cobbler']['path']
+  system true
+end

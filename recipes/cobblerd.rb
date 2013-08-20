@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cobbler
-# Recipe:: default
+# Recipe:: cobblerd
 #
 # Copyright 2013, Guilhem Lettron <guilhem@lettron.fr>
 #
@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe "cobbler::cobblerd"
+include_recipe "cobbler::cobblerd_#{node['cobbler']['cobblerd']['install_method']}"

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cobbler
-# Recipe:: default
+# Recipe:: cobblerd_source
 #
 # Copyright 2013, Guilhem Lettron <guilhem@lettron.fr>
 #
@@ -17,4 +17,21 @@
 # limitations under the License.
 #
 
-include_recipe "cobbler::cobblerd"
+include_recipe "cobbler::_common"
+include_recipe "cobbler::_common_cobblerd"
+
+python_virtualenv "cobblerd" do
+  path node['cobbler']['cobblerd']['path']
+  owner node['cobbler']['cobblerd']['user']
+  group node['cobbler']['cobblerd']['group']
+end
+
+node['cobbler']['cobblerd']['source']['packages_required'].each do |pack|
+  package pack
+end
+
+node['cobbler']['cobblerd']['source']['packages_pip_required'].each do |pack|
+  python_pip pack do
+    virtualenv node['cobbler']['cobblerd']['path']
+  end
+end
