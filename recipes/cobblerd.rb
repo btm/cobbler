@@ -20,4 +20,6 @@
 case node['cobbler']['cobblerd']['install_method']
 when "source"
   include_recipe "cobbler::source"
+else
+  raise "Installing cobblerd using method '#{node['cobbler']['cobblerd']['install_method']}' is not supported."
 end
