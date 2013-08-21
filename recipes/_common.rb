@@ -27,3 +27,8 @@ user node['cobbler']['user'] do
   home node['cobbler']['path']
   system true
 end
+
+case node['platform_family']
+when "debian"
+  include_recipe "apt"
+end

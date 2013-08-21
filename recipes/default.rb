@@ -18,3 +18,5 @@
 #
 
 include_recipe "cobbler::cobblerd"
+include_recipe "cobbler::web"
+include_recipe "cobbler::koan"

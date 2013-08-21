@@ -17,14 +17,4 @@
 # limitations under the License.
 #
 
-["createrepo", "genisoimage", "syslinux", "yum-utils"].each do |pack|
-  package pack
-end
 
-include_recipe "tftp"
-include_recipe "rsync"
-include_recipe "python"
-include_recipe "apache2"
-include_recipe "apache2::mod_wsgi"
-include_recipe "apache2::mod_ssl"
-include_recipe "apache2::mod_proxy"

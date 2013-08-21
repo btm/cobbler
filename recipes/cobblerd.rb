@@ -17,4 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "cobbler::cobblerd_#{node['cobbler']['cobblerd']['install_method']}"
+case node['cobbler']['cobblerd']['install_method']
+when "source"
+  include_recipe "cobbler::source"
+end
